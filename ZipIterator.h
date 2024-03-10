@@ -87,7 +87,7 @@ public:
     }
 
     zip_iterator swap() {
-        std::swap(this->value_type);
+        std::swap(iter1, iter2);
         return *this;
     }
 };
