@@ -6,6 +6,7 @@
 #define CPP_LAB_12_ZIPITERATOR_H
 
 #include <iterator>
+#include <algorithm>
 
 // ZipIterator works similar to function "zip()" in Python,
 // joining together elements of two or more containers.
@@ -59,10 +60,23 @@ public:
         return *this;
     }
 
+    zip_iterator operator--() {
+        iter1--;
+        iter2--;
+        return *this;
+    }
+
     zip_iterator operator++(int) {
         zip_iterator old(*this);
         iter1++;
         iter2++;
+        return old;
+    }
+
+    zip_iterator operator--(int) {
+        zip_iterator old(*this);
+        iter1--;
+        iter2--;
         return old;
     }
 
@@ -84,11 +98,6 @@ public:
 
     bool any(const std::pair<IT1, IT2>& other) const {
         return iter1 == other.first || iter2 == other.second;
-    }
-
-    zip_iterator swap() {
-        std::swap(iter1, iter2);
-        return *this;
     }
 };
 
